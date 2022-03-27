@@ -4,7 +4,7 @@ from data_base_emt import DataBaseEMT
 
 def get_db():
     if 'db' not in g:
-        g.db = DataBaseEMT()
+        g.db = DataBaseEMT(False)
     return g.db
 
 

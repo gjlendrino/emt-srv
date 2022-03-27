@@ -11,8 +11,10 @@ countries = [
 
 
 #http://127.0.0.1:5000/stops/1952/78
-@app.get("/stops/<int:stop_id>/<int:line_id>")
-def get_stop_arrives(stop_id, line_id):
+@app.get("/stops/<int:stop_id>/<int:line>")
+def get_stop_arrives(stop_id, line):
     db = get_db()
-    arrive = db.get_arrive((stop_id, line_id))
+    sql = "SELECT estimateArrive FROM arrives WHERE stop_id = %d AND line = %d AND position = 1" % (stop_id, line)
+    # arrive = db.get(sql)
+    arrive = db.get_arrive(stop_id, line)
     return jsonify(arrive)
